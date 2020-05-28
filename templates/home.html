@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Flask Lili HOME{% endblock %}
+{% block main %}
+
+
+<div>
+  <h1>Upload new File</h1>
+  <form action="upload" method="post" enctype="multipart/form-data">
+    <div>
+      <input type="file" name="file">
+      <input type="submit" value="Upload">
+    </div>
+  </form>
+</div>
+<div class="list-files">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>File name</th>
+        <th>Date uploaded</th>
+        <th>actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if files %}
+        {% for item in files %}
+          <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <td>
+                    <form name="fname" action="/removeDocument" method="POST">
+                        <input type="hidden" name="filename" value="{{ item.id }}" />
+                        <input  type="submit" value="delete" >
+                    </form>
+                    <a href="/getdocument/{{ item.id }}" download=""><button >Download!</button></a>
+            </td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

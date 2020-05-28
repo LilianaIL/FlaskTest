@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <style>
+        .nav-pills .nav-link.active {
+            background-color: rgba(255, 0, 0, 0.2);
+            color: white;
+        }
+        .main-body{
+            margin-top: 100px;
+        }
+
+    </style>
+    <script src="{{ url_for('static', filename='jquery-3.3.1.slim.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    {% block style %}{% endblock %}
+    {% block script %}{% endblock %}
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-dark bg-primary fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Flask</a>
+            </div>
+            <ul class="nav nav-pills justify-content-end white">
+                <li class="nav-item">
+                    <a class="nav-link text-white active" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('about_index') }}">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main-body">
+        {% block main %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>
